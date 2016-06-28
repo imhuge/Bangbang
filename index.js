@@ -24,7 +24,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊男|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿||');
+      S.UI.simulate('#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿|#rectangle|何渊|生日快乐|Happy|Birthday|To|You!|#countdown 3|Boom|哈嘿||');
     }
 
     S.Drawing.loop(function () {
