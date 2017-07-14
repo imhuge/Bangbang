@@ -1,0 +1,42 @@
+String html ="";
+System.out.println("回复的数量"+ans.size());
+for(Answer answer : ans){
+	html += "<div class=\"showAns\"><a href=\"#\" class=\"ans-headImg\"><img src=\"user/"+userService.getUserName(answer.getUserId())+"/images/cus.jpg\" /></a>"
+				+"<div class=\"ans-person\">"
+		+"<a href=\"#\">"+userList.get(answer.getUserId())+":</a>"
+		+"<span>"+answer.getContent()+"</span>"
+		+"<div class=\"ans-bottom\"><span class=\"reply\">回复</span><span class=\"reply-time\">"+ answer.getDate() +"</span></div>"
+	    +"</div>"
+    +"</div>";
+}
+String pageHead = "<div class=\"ans-page\" id=\"ans-page\">";
+String pageCon = "";
+if(ansPage.isHasPrePage()){
+	pageCon = "<a href=\"#\" class=\"enabled\">首页</a>"
+			+"<a href=\"#\" class=\"enabled\">上一页</a>";
+	
+	for(int i=1;i<ansPage.getCurrentPage();i++){
+		pageCon += "<a href=\"#\" class=\"enabled\">"+i+"</a>";
+	}
+}else{
+	//pageCon += "<a href=\"#\" class=\"active enabled\">"+currentPage+"</a>";
+	if(ansPage.isHasNextPage()){
+		for(int j=currentPage;j<=ansPage.getTotalPage();j++){
+			pageCon += "<a href=\"#\" class=\"enabled\">"+j+"</a>";
+		}
+		pageCon += "<a href=\"#\" class=\"enabled\">下一页</a>"
+			+"<a href=\"#\" class=\"enabled\">尾页</a>";
+	}
+}
+String pageEnd = "</div>";
+String pageContent = pageHead + pageCon + pageEnd;
+String addReply = "<div class=\"add-reply\">"
+					   +"<h3>添加回答</h3>"
+					   +"<input type=\"hidden\" class=\"critiqueId\" value=\""+id+"\" />"
+				       +"<input type=\"hidden\" class=\"user\" value=\""+ session.get("username") +"\" />"
+				       +"<div class=\"reply-input\"><input class=\"anscontent\" type=\"text\" /></div>"
+				       +"<div class=\"reply\">"
+					   +"<button class=\"add-ans\">回复</button>"
+				       +"</div>"
+				  +"</div>";
+html += pageContent + addReply;

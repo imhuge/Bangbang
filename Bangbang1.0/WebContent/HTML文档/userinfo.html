@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="JS/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="JS/jquery.cookie.js" type="text/javascript"></script>
+<title>个人主页</title>
+<style type="text/css">
+	*{ margin:0; padding:0;}
+	body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif;}
+	a{ text-decoration:none;}
+	.header{ width:100%; height:60px; background-color:#000;}
+	.mid-box{ width:1000px; height:60px; margin:0 auto;}
+	.logo{ float:left; background:url(images/head_bg.png) no-repeat center; width:134px; height:60px;}
+	.index{ float:left; height:60px; width:60px; text-align:center; line-height:60px; margin-left:20px; transition:background-color 0.5s;}
+	.index:hover{ background-color:#333;}
+	.index a{ color:#fff; font-size:14px;}	
+	.bangIndex{ float:left; text-align:center; height:60px; width:80px; line-height:60px; transition:background-color 0.5s; }
+	.bangIndex a{ color:#fff;  font-size:14px;}
+	.bangIndex:hover{ background-color:#333;}
+	.search{ float:right; width:330px; height:32px; margin-top:14px; margin-right:55px;}
+	.form .txt{ float:right; width:260px; height:32px;}
+	.txt input{ width:260px; height:32px; border:0 none;}
+	.form .btn{ float:right;width:70px; height:32px;}
+	.btn input{ width:70px; height:32px; border:0; color:#FFC680; font-size:14px; font-family:"微软雅黑"; background-color:#FF8C00; cursor:pointer;}
+	.login,.register{ float:right;  height:60px; width:60px; line-height:60px; text-align:center; margin-right:20px; transition:background-color 0.5s;}
+	.login:hover{ background-color:#f00;}
+	.register:hover{ background-color:#333;}
+	.customer a{ text-decoration:none; color:#666; font-family:"微软雅黑";}
+	
+	.user-wrap{ width:100%; height:220px; background-color:#000; background:url(images/user_bg.jpg) no-repeat;}
+	.user-detail{ width:1000px; margin:0 auto;}
+	.user-info{  margin-left:300px; padding-top:40px;}
+	.user-info h1{ font-size:32px; font-weight:600; line-height:40px; text-align:left; color:#ccc;}
+	.user-info .about-info{ display:block; font-size:14px; color:#fff; line-height:20px; text-align:left; margin-top:6px;}
+	.user-info .user-desc{ display:block; font-size:14px; line-height:24px; color:#fff; text-align:left; margin-top:20px; word-break:break-all; word-wrap:break-word; opacity:0.5;}
+	
+	.wraper{ width:100%;}
+	.showArea{ width:1000px; margin:0 auto; overflow:hidden;}
+	.content-wrap{ margin-top:20px; overflow:hidden;}
+	.leftwraper{ float:left; width:300px;}
+	.leftwraper .user-img{ width:150px; height:150px; margin-top:40px; margin-left:auto;margin-right:auto;}
+	.leftwraper .user-img img{ width:150px; height:150px; border-radius:50%;}
+	.leftwraper .nav-slider ul{ list-style:none;}
+	.leftwraper .nav-slider li{ height:60px; border-bottom:1px solid #EDF1F2; width:160px; margin:0 auto; display:list-item; text-align:-webkit-match-parent;}
+	.nav-slider li a{ display:block; height:60px; font-size:16px; line-height:60px; text-align:center; color:#5e5e5e;}
+	.nav-slider li .nav-hover:hover{  color:#14191e;}
+	.nav-slider li .active{ color:#F01400;}
+	.nav-list img{ vertical-align:middle;}
+	.nav-list .main-page{ position:relative; left:-25px;}
+	.nav-list .arrow{ position:relative; right:-45px;}
+	
+	.rightwraper{ float:left; width:600px; overflow:hidden;}
+	.dynamic{ height:60px; line-height:60px; border-bottom:1px solid #CFD5D8;}
+	.dynamic span{ color:#787d82; font-size:14px;}
+	.ques-answer{ padding-top:20px; padding-bottom:24px; border-bottom:1px solid #d0d6d9;}
+	.user-mes{ overflow:hidden; height:50px; line-height:50px;}
+	.user-mes img{ float:left; width:50px; border-radius:50%; vertical-align:middle;}
+	.userInfo{ float:left; height:50px; line-height:50px;}
+	.userInfo a{ font-size:16px; font-weight:bold; padding-left:10px; color:#14191e;}
+	.ans-date{ float:right; color:#787d82; padding-left:10px;}
+	.helpTitle{ margin-left:60px; height:40px; font-size:16px; color:#07111b; line-height:40px;}
+	.helpMes{ padding:10px 10px; margin-left:60px; background-color:#f2f4f6;}
+	.helpMes a{ color:#4d555d; font-size:18px; font-weight:bold; line-height:35px; white-space:nowrap; overflow:hidden;}
+	.helpMes a:hover{ color:#14191e;}
+	.ans-append{ margin-top:20px; box-sizing:border-box; padding-left:50px;}
+	.ans-append span{ display:inline-block; line-height:24px; font-size:12px; color:#787d82; margin-right:20px; cursor:pointer;}
+	.ans-append span:hover{ color:#14191e;}
+	.ans-append .agree{ height:24px; border:1px solid #d0d6d9; padding:0 9px; transition:border-color 0.5s;}
+	.ans-append .agree:hover{ border-color:#14191e;}
+	
+	
+	.footer{ width:100%; margin-top:30px; height:200px; background-color:#000;}
+	.footer-content{ width:1000px; margin:0 auto;}
+	.foot-title{ width:720px; height:40px; font-size:12px; text-align:center; padding-top:40px; margin:0px auto;}
+	.foot-title ul{ display:block; width:350px; margin:0 auto; height:20px; list-style:none; text-align:center;}
+	.foot-title ul li{ float:left; color:#fff; }
+	.foot-title p{ clear:both; color:#666;}
+	.foot-value{ width:600px; height:50px; margin:40px auto;}
+	.foot-value ul{ list-style:none;}
+	.foot-value li{ display:block; float:left; margin-right:20px;}
+	.clear{ clear:both;}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+        var slider = $('#slider');
+		var navList = slider.find('a');
+		navList.each(function(index, element) {
+            var navItem = $(this);
+			$(this).bind("click",function(){
+				navList.each(function() {
+                    $(this).removeClass("active");
+					$(this).addClass("nav-hover");
+                });
+				navItem.removeClass("nav-hover");
+				navItem.addClass("active");
+			});
+        });
+    });
+</script>
+</head>
+
+<body>
+<div class="header">
+    <div class="mid-box">
+        <div class="logo"></div>
+        <div class="index">
+        	<a href="#">首页</a>
+        </div>
+        <div class="bangIndex"><a href="#">帮帮招领</a></div>
+        <div class="customer register">
+            <a href="#">注册</a>
+        </div>
+        <div class="customer login">
+            <a href="#">登录</a>
+        </div>
+        <div class="search">
+            <form action="#" method="get" class="form">
+                <div class="btn"><input type="submit" value="搜 索" /></div>
+                <div class="txt"><input type="text" /></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="user-wrap">
+    <div class="user-detail">
+        <div class="user-info">
+            <h1>tigger</h1>
+            <p class="about-info">10帮帮</p>
+            <p class="user-desc">这位同学很懒，木有签名的说~</p>
+        </div>
+    </div>
+</div>
+<div class="wraper">
+	<div class="showArea">
+        <div class="content-wrap">
+            <div class="leftwraper">
+                <div class="user-img"><img src="images/user-img.png" /></div>
+                <div class="nav-slider" id="slider">
+                	<ul>
+                    	<li><a href="#" class="nav-list active"><img src="images/main-page.png" class="main-page" />主页<img src="images/arrow.png" class="arrow" /></a></li>
+                        <li><a href="#" class="nav-list nav-hover"><img src="images/main-page.png" class="main-page" />帮帮<img src="images/arrow.png" class="arrow" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rightwraper">
+                <div class="dynamic"><span>最新动态</span></div>
+                <div class="ques-answer">
+                    <div class="user-mes">
+                        <a href="#"><img src="images/cus01.png" /></a>  
+                        <div class="userInfo">
+                            <a href="#" class="user">tigger</a>
+                        </div>
+                        <div class="ans-date">
+                            2016-10-16 
+                        </div>    
+                    </div>
+                    <div class="helpTitle">在帮帮寻求帮友:</div>
+                    <div class="helpMes">
+                        <a href="#">拉布拉多犬走丢！</a>
+                    </div>
+                </div>
+                <div class="ques-answer">
+                    <div class="user-mes">
+                        <a href="#"><img src="images/cus01.png" /></a>  
+                        <div class="userInfo">
+                            <a href="#" class="user">tigger</a>
+                        </div>
+                        <div class="ans-date">
+                            2016-10-15 
+                        </div>    
+                    </div>
+                    <div class="helpTitle">在帮帮寻求帮友:</div>
+                    <div class="helpMes">
+                        <a href="#">银白色索尼电脑！</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         	
+</div>
+<div class="footer">
+    <div class="footer-content">
+        <div class="foot-title">
+            <ul>
+                <li>帮帮简介| </li>
+                <li>帮帮公告| </li>
+                <li>招贤纳士| </li>
+                <li>联系我们| </li>
+                <li>客服热线：400-675-1234</li>
+            </ul>
+            <p>Copyright @ 2006-2014 木刻版区所有 京ICP备09037834号 京ICP证B1034-8373号 某市公安局XX分局备案编号：123456789123</p>
+        </div>
+        <div class="foot-value">
+            <ul>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

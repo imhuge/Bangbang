@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="JS/jquery-1.11.1.js"></script>
+<!--<script src="JS/upload.js" type="text/javascript"></script>-->
+<title>上传图片</title>
+<style>
+     *{ margin:0; padding:0;}
+	 body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif;}
+	 .upload{ display:none; height:470px; width:680px; position:fixed; top:50px; left:100px; z-index:1005;}
+	 .up-head{ height:26px; line-height:25px; font-weight:bold; font-size:13px;cursor:move; color:#474747; text-shadow:0 1px 0 rgba(255,255,255,.75);border-bottom:1px solid #999; background-color:#cfd1cf;}   
+	 .up-head .title{ float:left; font-size:12px; margin-left:10px; line-height:25px;}
+	 .up-head .shut{ float:right; height:23px; padding-top:2px; margin-right:5px; line-height:26px;}
+	 .shut:hover{ cursor:pointer;} 
+	 .up-head .shut img{ border-radius:50%;}
+	 .tabhead{ float:left; margin-top:10px; margin-left:14px; z-index:10; position:relative; overflow:hidden;}
+	 .tabhead span{ display:inline-block; padding:0 6px; height:30px; text-align:center; line-height:30px; border:1px solid #ccc;}
+	 .tabhead .local{  height:32px; border-bottom:none; background-color:#fff;}
+	 .up-content{ width:648px; height:348px; margin:0 auto; margin-top:42px; border:1px solid #ccc; }
+	 
+	 .up-content .statusBar{ height:45px; border-bottom:1px solid #dadada; margin:0 10px; line-height:45px; vertical-align:middle; position:relative;}
+	 .statusBar .btns{ position:relative; float:right; width:208px; height:32px; top:7px; right:0; line-height:30px;}
+	 .btns .addImg{ position:relative; display:inline-block; float:left; overflow:hidden;}
+	 .addImg .addImg-pick{ width:94px; height:30px; margin-right:10px; text-align:center; font-size:14px; background:#565656; border:1px solid #cfcfcf; background:#fff; border-radius:3px; cursor:pointer; overflow:hidden;}
+	 .addImg .addImg-upload{ position:absolute; top:0; left:0; width:94px; height:30px; cursor:pointer; overflow:hidden;}
+	 .addImg .addImg-upload label{ display:block; opacity:1; width:100%; height:100%; cursor:pointer;}
+	 .addImg .addImg-upload label input{ position:absolute !important; top:-6px; font-size:0;}
+	 .btns .startUpload{ float:left; width:94px; height:32px; text-align:center; background:#00b7ee; color:#fff; border-radius:3px; border-color:transparent; cursor:pointer;}
+	 
+	 .img-area{ position:relative; margin:10px; border:2px dashed #e6e6e6; height:326px; text-align:center; background:url(images/upload_bg.png) center no-repeat; }
+	 .pick-upload{ width:168px; height:45px; margin:142px auto; font-size:18px; background-color:#00b7ee; border-radius:3px; line-height:45px; color:#fff; cursor:pointer;}
+	 .img-upload{ position:absolute; top:142px; left:230px; width:168px; height:45px; overflow:hidden;}
+	 .img-upload label{ display:block; opacity:0; width:100%; height:100%; cursor:pointer;}
+	 .img-upload label input{ position:absolute !important; font-size:0;}
+	 .filelist{ list-style:none; margin:0; padding:0; overflow-x:hidden; overflow-y:auto; position:relative; height: 300px;}
+	 .filelist li{ float:left; position:relative; text-align:center; height:113px; width:113px; margin:9px 0 0 9px; overflow:hidden;}
+	 .filelist li .imgWrap{ position:relative; width:113px; height:113px; overflow:hidden; vertical-align:middle; z-index:2; transition:200ms ease-out;}
+	 .imgWrap img{ width:113px; height:113px;}
+	 .uploadSuccess{ display:none;}
+	 .error{ display:none; width:100%; height:28px; color:#fff; background:#f43838; position:absolute; bottom:0; left:0; line-height:28px; z-index:100;}
+	 .filelist li .cancelUpload{ position:absolute; width:100%; height:0px; background:#fff; top:0; left:0; overflow:hidden; z-index:300;}
+	 .cancelUpload span{ display:inline; float:right; width:24px; height:24px; margin:5px 5px auto auto; cursor:pointer; background:url(images/cancel.png) center no-repeat;}
+	 .filelist .continue{ border:1px solid #eeeeee; background:url(images/continue_upload_bg.png) center no-repeat;}
+	 .continueUpload{ position:absolute; top:0; left:0; width:113px; height:113px; overflow:hidden;}
+	 .continueUpload label{ display:block; opacity:0; width:100%; height:100%; background:#fff; cursor:pointer;}
+	 
+	 .process{ border:1px solid #1483d8; width:198px; background-color:#fff; height:18px; position:absolute; top:12px; text-align:center; line-height:18px; color:#6dbfff; margin:0 10px 0 0;}
+	 .process .text{ position:relative; z-index:10;}
+	 .process .percentage{ width:20px; height:100%; position:absolute; left:0; top:0; background:#1483d8;}
+	 
+	 .up-bottom{ height:30px; margin-top:10px; overflow:hidden; }
+	 .up-bottom div{ float:left; border:1px solid #cfcfcf; color:#565656; font-size:14px; padding:0px 18px; border-radius:3px; cursor:pointer;}
+	 .up-bottom .confirm{ margin-left:490px;}
+	 .up-bottom .cancel{ margin-left:20px;}
+	 
+	 .orderList{ width:560px; height:38px; line-height:38px; border-bottom:1px solid #cbcdd2; background:#eceef0; overflow:hidden;}
+	 .order01{ float:left; height:30px; width:30px; margin:4px 5px 4px 0; }
+	 .order01:hover{ background:#ccc;}
+	 .order01 .order01-img{ height:28px !important; width:28px !important; background:url(images/upload.jpg) center no-repeat;}
+	
+	 .add-input{ width:560px; min-height:100px; position:relative; z-index:9999; overflow:hidden;}
+	 .add-input input{ height:40px; width:552px; padding-left:5px; outline:none;}
+	
+	 .uploadMainFrame{ position:relative; padding:2px 0 0 2px; zoom:1;}
+	 .frameShadow{ position:absolute; z-index:-1; left:0; top:0; width:100%; height:100%; background:#fff; border:1px solid #ccc;}
+	
+	 .addInputBox{ width:560px; z-index:9999; border:1px solid #c8cdd2; background-color:#fff; position:relative; overflow:visible; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px;}
+	.addInputBox div{ width:auto; height:auto;}
+	.add-input{ width:560px; position:relative; z-index:9999; overflow:visible; overflow:hidden;}
+	
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#clickUpload").bind("click",function(){
+			$("#uploadfixed").show();
+			beginUpload();
+		});
+		$("#uploadEditor").contents().find("p").bind("keydown",function(e){
+			console.log("keydown");
+			if(e.which == 13){
+				console.log("enter");
+			}
+		});
+		var iframe = $("#uploadEditor").contents().find("body");
+		iframe.remove("ul");
+	});
+	function clearAll(){
+		console.log("begin clearing");
+		var iframe = $("#uploadEditor").contents().find("body");
+		iframe.empty()
+		iframe.html("<p><br /></p>");
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="删除" onclick="clearAll()"/>
+	<div class="orderList">
+    	<div class="order01">
+        	<div id="clickUpload" class="order01-img"></div>
+        </div>
+    </div>
+    <div class="addInputBox" id="inputBox">
+	    <div class="add-input">
+	    	<iframe id="uploadEditor" style="width:100%; height:100%;" frameborder="0" src="upload_iframe.html">
+	        </iframe>
+	    </div>
+    </div>
+    <div id="uploadfixed" class="upload">
+    	<div class="uploadMainFrame">
+        	<div class="frameShadow"></div>
+            <div class="up-head">
+                <span class="title">多图上传</span><span class="shut" id="shutUpload"><img src="images/close.png" /></span>
+            </div>
+            <div class="tabhead"><span class="local">本地上传</span></div>
+            <div id="up-content" class="up-content">
+                <div class="img-area">
+                    <div id="chooseImg" class="pick-upload">点击选择图片</div>
+                    <div class="img-upload"><label><input class="uploadImg" type="file" name="file" accept="image/*" multiple="multiple"/></label></div>
+                </div>
+            </div>
+            <div class="up-bottom">
+                <div id="confirm" class="confirm">确认</div>
+                <div id="clickCancel" class="cancel">取消</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

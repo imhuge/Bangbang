@@ -1,0 +1,33 @@
+@charset "gb2312";
+/* CSS Document */
+	.sign-in{ display:none; position:fixed; top:50%; left:50%; margin-top:-190px; margin-left:-210px; width:420px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); transition:all 0.5s; z-index:10000;}
+	.login-wrap{ width:420px; background-color:#fff;}
+	.login-head{ width:380px; height:50px; padding-left:40px; background-color:#fff; border-bottom:1px solid #ccc;}
+	.login-head .close{ float:right; width:21px; height:21px; background:url(../images/close.png) center no-repeat; cursor:pointer; border:none; margin-top:15px; margin-right:10px;}
+	.login-head .close:hover{ background:url(../images/close_hover.png) center no-repeat;  transform:scale(1.1);-webkit-transform:scale(1.1); -moz-transform:scale(1.1);}
+	.login-head span{ float:left; width:80px; height:50px; text-align:center; line-height:50px; font-size:16px; color:#787d82; cursor:pointer;}
+	.login-head .active{ color:#f01400; border-bottom:1px solid #f01400;}
+	.login-head span:hover{ color:#f01400; border-bottom:1px solid #f01400;}
+	
+	.login-content{ display:none; width:302px; margin:0 auto; padding-top:20px; background-color:#fff; overflow:hidden; }
+	.register-content{ display:none; width:302px; margin:0 auto; background-color:#fff; overflow:hidden;}
+	.hints{ height:30px; line-height:30px; color:#f01400; font-size:12px;}
+	.user{ margin-bottom:20px;}
+	.username{ background:url(../images/user.jpg) 95% center no-repeat;}
+	.pwd{ background:url(../images/pwd.jpg) 95% center no-repeat;}
+	.user p{ color:#999999; font-size:14px; line-height:20px;}
+	.user input{ width:295px; height:35px; border:1px solid #ccc; line-height:35px; font-size:16px; outline:none;}
+	.auto{ height:40px; line-height:40px;}
+	.auto label{ font-size:12px;}
+	.auto input{ vertical-align:middle;}
+	.auto a{ padding-left:10px; text-decoration:none; font-size:12px; color:#000;}
+	.auto a:hover{ text-decoration:underline; color:#1D7AD9;}
+	.login-btn{ margin-bottom:25px;}
+	.login-btn input{ width:295px; height:45px; font-size:16px; font-weight:bold; background-color:#f01400; color:#fff; font-family:"Î¢ÈíÑÅºÚ"; border:0; cursor:pointer;}
+	
+	.protocol{ width:200px; height:20px; line-height:20px; margin:0px auto;}
+	.protocol label{ font-size:12px;}
+	.protocol input{ vertical-align:middle;}
+	.protocol a{ text-decoration:none; font-size:12px; color:#1D7AD9}
+	.protocol a:hover{ text-decoration:underline;}
+	.backcover{ position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1; background-color:#000; opacity:0.75; filter:alpha(opacity=75);}

@@ -1,0 +1,79 @@
+/* CSS Document */
+	*{ margin:0; padding:0;}
+	body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif; background-color:#edeff0;}
+	a{ text-decoration:none;}
+	.header{ width:100%; height:60px; background-color:#000;}
+	.mid-box{ width:1000px; height:60px; margin:0 auto;}
+	.logo{ float:left; background:url(../images/head_bg.png) no-repeat center; width:134px; height:60px;}
+	.index{ float:left; height:60px; width:60px; text-align:center; line-height:60px; margin-left:20px; transition:background-color 0.5s;}
+	.index:hover{ background-color:#333;}
+	.index a{ color:#fff; font-size:14px;}	
+	.bangIndex{ float:left; text-align:center; height:60px; width:80px; line-height:60px; transition:background-color 0.5s; }
+	.bangIndex a{ color:#fff;  font-size:14px;}
+	.bangIndex:hover{ background-color:#333;}
+	.search{ float:right; width:330px; height:32px; margin-top:14px; margin-right:55px;}
+	.form .txt{ float:right; width:260px; height:32px;}
+	.txt input{ width:260px; height:32px; border:0 none;}
+	.form .btn{ float:right;width:70px; height:32px;}
+	.btn input{ width:70px; height:32px; border:0; color:#FFC680; font-size:14px; font-family:"微软雅黑"; background-color:#FF8C00; cursor:pointer;}
+	.login,.register{ float:right;  height:60px; width:60px; line-height:60px; text-align:center; margin-right:20px; transition:background-color 0.5s;}
+	.login:hover{ background-color:#f00;}
+	.register:hover{ background-color:#333;}
+	.customer a{ text-decoration:none; color:#666; font-family:"微软雅黑";}
+	
+	.after-customer{ float:right; height:60px; position:relative;}
+	.after-customer .newMes,.cus-img{ display:inline-block; width:60px; height:60px; line-height:60px; text-align:center; transition:background-color 0.5s; cursor:pointer;}
+	.after-customer .newMes{ color:#999;}
+	.after-customer .newMes:hover{ background-color:#f01400; color:#fff;}
+	.after-customer .cusImg{ width:50px; height:50px; border:2px solid #ccc; border-radius:50%; vertical-align:middle;}
+	.after-customer .cusImg:hover{ border-color:#f01400;}
+	
+	.personal{ display:none; position:absolute; width:240px; padding-top:5px; background-color:#000; top:55px; right:0; z-index:100;}
+	.triangle{ width:240px; height:10px; background-color:#fff; overflow:hidden;}
+	.triangle img{ float:right; margin-right:18px;}
+	.per-head{ height:80px; background-color:#f01400; overflow:hidden;}
+	.per-img{ float:left; width:80px; text-align:center; margin-top:10px;}
+	.per-img img{ width:60px; height:60px; border-radius:50%;}
+	.per-info{ float:left; color:#fff; line-height:30px;}
+	.per-info h3{ font-size:16px; font-weight:600; padding-top:20px;}
+	.per-info p{ font-size:14px;}
+	.per-bottom{ height:40px; width:238px; background-color:#fff; border:1px solid #ccc; overflow:hidden;}
+	.per-bottom .setinfo{ float:left; width:80px; height:40px; line-height:40px; text-align:center; color:#787d82;}
+	.per-bottom .exit{ float:right; width:80px; height:40px; line-height:40px; text-align:center; color:#787d82;}
+	.per-bottom a:hover{ color:#f01400;}
+	
+	.wrapper{ width:100%; }
+	.head-wrap{ width:100%; height:160px; background:url(../images/edit_bg.png);}
+	.head-con{ width:1000px; margin:0 auto; height:160px; line-height:160px;}
+	.head-con h1{ font-size:32px; font-weight:bold; padding-left:80px;}
+	
+	.wrap-con{ width:1000px; margin:0 auto; }
+	.edit-con{ width:600px; margin:auto; background-color:#fff; border-top:1px solid #b7bbb; padding:0 30px;;}
+	.edit-nav{ height:60px; border-bottom:1px solid #ccc; }
+	.edit-nav span{ display:block; width:80px; height:60px; font-size:16px; color:#4d555d; line-height:60px; text-align:center; border-bottom:1px solid #f01400;}
+	.input-userinfo{ width:490px; margin:20px auto;}
+	.need-input{ margin-bottom:20px; overflow:hidden;}
+	.main-group{ float:left; width:200px; height:200px; margin-left:8px; overflow:hidden;}
+	.main-Img{ width:192px; height:192px; background-color:#d9dde1; text-align:center; border:4px solid #d9dde1; border-radius:96px; cursor:pointer; overflow:hidden;}
+	.uploadButton .true-img{ width:192px; height:192px; cursor:pointer;}
+	.signature textarea{ width:410px; height:120px;}
+	.label-name{ float:left; width:70px; text-align:right; height:40px; line-height:40px; color:#07111b; font-weight:bold; font-size:14px;}
+	.inputCon{ float:left; margin-left:8px; width:405px; height:40px; color:#60686b; padding-left:5px; box-sizing: border-box;}
+	.chooseSex{ float:left; margin-left:8px; width:405px; height:40px; line-height:40px; color:#60686b; padding-left:5px; overflow:hidden;}
+	.chooseSex .sex{ display:inline-block; width:40px; margin-right:26px;}
+	.chooseSex input{ display:inline-block; margin-right:10px; vertical-align:middle;}
+	.inputArea{ float:left; margin-left:8px; width:405px; height:160px; color:#787d82; padding-left:5px; line-height:1.42857143;}
+	.save{ height:40px; padding-bottom:20px;}
+	.save input{ display:block; margin-left:80px; background-color:#00b33b; border:none; border-radius:2px; color:#fff; text-align:center; line-height:40px; cursor:pointer; width:96px; height:40px;}
+	
+	.footer{ width:100%; margin-top:30px; height:200px; background-color:#D4D4D4;}
+	.footer-content{ width:1000px; margin:0 auto;}
+	.foot-title{ width:720px; height:40px; font-size:12px; text-align:center; padding-top:40px; margin:0px auto;}
+	.foot-title ul{ display:block; width:350px; margin:0 auto; height:20px; list-style:none; text-align:center;}
+	.foot-title ul li{ float:left; }
+	.foot-title p{ clear:both;}
+	.foot-value{ width:600px; height:50px; margin:40px auto;}
+	.foot-value ul{ list-style:none;}
+	.foot-value li{ display:block; float:left; margin-right:20px;}
+	.clear{ clear:both;}
+	

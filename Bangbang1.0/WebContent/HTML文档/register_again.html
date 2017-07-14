@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ margin:0; padding:0;}
+	body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif;}
+	a{ text-decoration:none;}
+	input{ padding-left:5px;}
+	.in{ opacity:1; filter:alpha(opacity=100);}
+	div{ background-size:cover;}
+	.sign-in{ position:fixed; top:50%; left:50%; width:440px; margin-left:-220px; margin-top:-190px; padding-bottom:30px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); transition:all 0.5s; background-color:#fff; z-index:10000;}
+	.register-wrap{ width:440px; background-color:#fff; overflow:hidden;}
+	.login-head{ width:300px; height:50px; background-color:#fff; margin:20px auto; border-bottom:1px solid #ccc;}
+	.login-head .close{ float:right; width:21px; height:21px; background:url(images/close.png) center no-repeat; cursor:pointer; border:none; margin-top:15px; margin-right:10px;}
+	.login-head .close:hover{  transform:scale(1.1);-webkit-transform:scale(1.1); -moz-transform:scale(1.1);}
+	.login-head span{ float:left; width:80px; height:50px; text-align:center; line-height:50px; font-size:16px; color:#787d82; cursor:pointer;}
+	.login-head .active{ color:#f01400; border-bottom:1px solid #f01400;}
+	.login-head span:hover{ color:#f01400; border-bottom:1px solid #f01400;}
+	.login-content{ width:300px; margin:0 auto;}
+	.user{ margin-bottom:20px;}
+	.username{ background:url(images/user.jpg) 95% center no-repeat;}
+	.pwd{ background:url(images/pwd.jpg) 95% center no-repeat;}
+	.user p{ color:#999999; font-size:12px; line-height:20px;}
+	.user input{ width:300px; height:35px; border:1px solid #ccc; line-height:35px; font-size:16px; outline:none;}
+	.auto label{ font-size:12px;}
+	.auto input{ vertical-align:middle;}
+	.auto a{ padding-left:10px; text-decoration:none; font-size:12px; color:#000;}
+	.auto a:hover{ text-decoration:underline; color:#1D7AD9;}
+	.login-btn{ margin-top:20px;}
+	.login-btn input{ display:block; width:310px; height:50px; font-size:16px; font-weight:bold; color:#fff; font-family:"微软雅黑"; border:0; background-color:#f01400; cursor:pointer;}
+	
+	.backcover{ position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1; background-color:#000; opacity:0.75; filter:alpha(opacity=75);}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+        if($.cookie("auto") == "true"){
+			$('#autoLogin').attr("checked",true);
+			$('#username').val($.cookie("username"));
+			$('#password').val($.cookie("password"));
+		}
+    });
+	function save(){
+		if($('#autoLogin').prop("checked")){
+			console.log($('#autoLogin').prop("checked"));
+			var username = $('#username').val();
+			var pwd = $('#password').val();
+			$.cookie("auto","true",{expires:7});
+			$.cookie("username",username,{expires:7});
+			$.cookie("password",pwd,{expires:7});
+		}
+		else{
+			$.cookie("auto","false",{expires:-1});
+			$.cookie("username","",{expires:-1});
+			$.cookie("password","",{expires:-1});
+		}
+	}
+</script>
+</head>
+
+<body>
+<div class="sign-in">
+	<div class="register-wrap">
+    	<div class="login-content">
+            <div class="user">
+                <p><img src="images/annotation.jpg" />账户名:</p>
+                <input type="text" id="username" class="username" name="username"/>
+            </div>
+            <div class="user">
+                <p><img src="images/annotation.jpg" />请设置密码:</p>
+                <input type="password" id="password" class="bg_img"  name="password"/>
+            </div>
+            <div class="user">
+                <p><img src="images/annotation.jpg" />请确认密码:</p>
+                <input type="password" id="repassword" class="bg_img"  name="password"/>
+            </div>
+            <div class="user">
+                <p><img src="images/annotation.jpg" />邮箱:</p>
+                <input type="email" id="email" class="bg_img"  name="email"/>
+            </div>
+            <div class="protocol">
+                <label><input type="checkbox" id="autoLogin" />我已阅读并同意</label><span><a href="#">《用户注册协议》</a></span>
+            </div>
+          `	<div class="login-btn">
+                <input type="submit" value="提交" onclick="" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

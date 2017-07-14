@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="JS/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="JS/jquery.cookie.js" type="text/javascript"></script>
+<title>无标题文档</title>
+<style type="text/css">
+	*{ margin:0; padding:0;}
+	body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif;}
+	a{ text-decoration:none;}
+	input{ padding-left:5px;}
+	div{ background-size:cover;}
+	.sign-in{ width:420px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); transition:all 0.5s; z-index:10000;}
+	.login-wrap{ width:420px; background-color:#fff;}
+	.login-head{ width:380px; height:50px; padding-left:40px; background-color:#fff; border-bottom:1px solid #ccc;}
+	.login-head .close{ float:right; width:21px; height:21px; background:url(images/close.png) center no-repeat; cursor:pointer; border:none; margin-top:15px; margin-right:10px;}
+	.login-head .close:hover{ background:url(images/close_hover.png) center no-repeat;  transform:scale(1.1);-webkit-transform:scale(1.1); -moz-transform:scale(1.1);}
+	.login-head span{ float:left; width:80px; height:50px; text-align:center; line-height:50px; font-size:16px; color:#787d82; cursor:pointer;}
+	.login-head .active{ color:#f01400; border-bottom:1px solid #f01400;}
+	.login-head span:hover{ color:#f01400; border-bottom:1px solid #f01400;}
+	
+	.login-content{ width:302px; margin:0 auto; padding-top:20px; background-color:#fff; overflow:hidden; }
+	.register-content{ width:302px; margin:0 auto; background-color:#fff; overflow:hidden;}
+	.hints{ height:30px; line-height:30px; color:#f01400; font-size:12px;}
+	.user{ margin-bottom:20px;}
+	.username{ background:url(images/user.jpg) 95% center no-repeat;}
+	.pwd{ background:url(images/pwd.jpg) 95% center no-repeat;}
+	.user p{ color:#999999; font-size:12px; line-height:20px;}
+	.user input{ width:295px; height:35px; border:1px solid #ccc; line-height:35px; font-size:16px; outline:none;}
+	.auto{ height:40px; line-height:40px;}
+	.auto label{ font-size:12px;}
+	.auto input{ vertical-align:middle;}
+	.auto a{ padding-left:10px; text-decoration:none; font-size:12px; color:#000;}
+	.auto a:hover{ text-decoration:underline; color:#1D7AD9;}
+	.login-btn{ margin-bottom:20px;}
+	.login-btn input{ width:295px; height:45px; font-size:16px; font-weight:bold; background-color:#f01400; color:#fff; font-family:"微软雅黑"; border:0; cursor:pointer;}
+	
+	.protocol{ width:200px; height:20px; line-height:20px; margin:0px auto;}
+	.protocol label{ font-size:12px;}
+	.protocol input{ vertical-align:middle;}
+	.protocol a{ text-decoration:none; font-size:12px; color:#1D7AD9}
+	.protocol a:hover{ text-decoration:underline;}
+	
+	.backcover{ position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1; background-color:#000; opacity:0.75; filter:alpha(opacity=75);}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		var login = $('#login');
+		var register = $('#register');
+		var loginCon = $('#logCon');
+		var registerCon = $("#regCon");
+		var hints = $('#hints');
+		var validateMes;
+		login.bind("click",function(){
+			register.removeClass("active");
+			login.addClass("active");
+			loginCon.css("display","block");
+			registerCon.css("display","none");
+		});
+		register.bind("click",function(){
+			login.removeClass("active");
+			register.addClass("active");
+			loginCon.css("display","none");
+			registerCon.css("display","block");
+		});
+		//读取缓存
+        if($.cookie("auto") == "true"){
+			$('#autoLogin').attr("checked",true);
+			$('#username').val($.cookie("username"));
+			$('#password').val($.cookie("password"));
+		}
+		//注册验证
+		
+		$('#username').bind("click",function(){
+			if($(this).val() == "") {
+				hints.html("用户名不能为空");
+				validateMes = false;
+			}else{
+				hints.html("");
+				validateMes = true;
+			}	
+		});
+		$("#password").bind("focusin focusout",function(){
+			if($(this).val() == "") {
+				hints.html("密码不能为空");
+				validateMes = false;
+			}else if($(this).val() != $('#repassword').val()){
+				hints.html("两次密码不一致");
+				validateMes = false;
+			}else{
+				hints.html("");
+				validateMes = true;
+			}
+		});
+		$("#repassword").bind("focusin focusout",function(){
+			if($(this).val() == "") {
+				hints.html("密码不能为空");
+				validateMes = false;
+			}else if($(this).val() != $('#password').val()){
+				hints.html("两次密码不一致");
+				validateMes = false;
+			}else{
+				hints.html("");
+				validateMes = true;
+			}
+		});
+		$("#email").bind("focusin focusout",function(){
+			var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+			if(!$(this).prop("checked")){
+				$("#beginReg").css("background-color","#787d82");
+			}
+			if($(this).val() == "") {
+				hints.html("请填写邮箱地址");
+				validateMes = false;
+			}else if(!$(this).val().match(reg)){
+				hints.html("邮箱格式不正确");
+				validateMes = false;
+			}
+			else{
+				hints.html("");
+				validateMes = true;
+			}
+		});
+		$("#agreeBook").bind("click",function(){
+			if($(this).prop("checked") && validateMes){
+				console.log($("#beginReg").attr("disabled"));
+				$("#beginReg").attr("disabled",false);
+				console.log($("#beginReg").prop("disabled"));
+				$("#beginReg").css("background-color","#f01400");
+			}else{
+				$("#beginReg").css("background-color","#787d82");
+			}
+		});
+    });
+	function show(){
+		console.log("success");	
+	}
+	function save(){
+		if($('#autoLogin').prop("checked")){
+			console.log($('#autoLogin').prop("checked"));
+			var username = $('#username').val();
+			var pwd = $('#password').val();
+			$.cookie("auto","true",{expires:7});
+			$.cookie("username",username,{expires:7});
+			$.cookie("password",pwd,{expires:7});
+		}
+		else{
+			$.cookie("auto","false",{expires:-1});
+			$.cookie("username","",{expires:-1});
+			$.cookie("password","",{expires:-1});
+		}
+	}
+	function shut(){
+		var signIn = $('#signin');
+		signIn.bind("click",function(){
+			$(this).css("opacity",0);
+		});
+	}
+</script>
+</head>
+
+<body>
+<div id="signin" class="sign-in">
+	<div class="login-head">
+        <button id="close" type="button" class="close" onclick="shut()"></button>
+        <span class="active" id="login">登录</span>
+        <span class="" id="register">注册</span>
+    </div>
+	<div class="login-wrap">
+        <div class="login-content" id="logCon">
+            <form action="login.action" method="post">
+                <div class="user">
+                    <p>邮箱/用户名/已验证手机</p>
+                    <div><input type="text" id="username" class="username" name="username"/></div>
+                </div>
+                <div class="user">
+                    <p>密码</p>
+                    <div><input type="password" id="password" class="pwd"  name="password"/></div>
+                </div>
+                <div class="auto">
+                    <label><input type="checkbox" id="autoLogin" />自动登录</label><span><a href="#">忘记密码?</a></span>
+                </div>
+                <div class="login-btn">
+                    <input type="submit" value="登录" onclick="save()" />
+                </div>
+            </form>
+        </div> 
+    </div>
+    <div class="backcover"></div>
+</div>
+
+</body>
+</html>

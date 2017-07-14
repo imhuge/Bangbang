@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
+<title>无标题文档</title>
+<style type="text/css">
+	*{ margin:0; padding:0;}
+	body{ font:14px/1.5 "PingFang SC", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif; background-color:#edeff0;}
+	a{ text-decoration:none;}
+	.header{ width:100%; height:60px; background-color:#000;}
+	.mid-box{ width:1000px; height:60px; margin:0 auto;}
+	.logo{ float:left; background:url(images/head_bg.png) no-repeat center; width:134px; height:60px;}
+	.index{ float:left; height:60px; width:60px; text-align:center; line-height:60px; margin-left:20px; transition:background-color 0.5s;}
+	.index:hover{ background-color:#333;}
+	.index a{ color:#fff; font-size:14px;}	
+	.bangIndex{ float:left; text-align:center; height:60px; width:80px; line-height:60px; transition:background-color 0.5s; }
+	.bangIndex a{ color:#fff;  font-size:14px;}
+	.bangIndex:hover{ background-color:#333;}
+	.search{ float:right; width:330px; height:32px; margin-top:14px; margin-right:55px;}
+	.form .txt{ float:right; width:260px; height:32px;}
+	.txt input{ width:260px; height:32px; border:0 none;}
+	.form .btn{ float:right;width:70px; height:32px;}
+	.btn input{ width:70px; height:32px; border:0; color:#FFC680; font-size:14px; font-family:"微软雅黑"; background-color:#FF8C00; cursor:pointer;}
+	.login,.register{ float:right;  height:60px; width:60px; line-height:60px; text-align:center; margin-right:20px; transition:background-color 0.5s;}
+	.login:hover{ background-color:#f00;}
+	.register:hover{ background-color:#333;}
+	.customer a{ text-decoration:none; color:#666; font-family:"微软雅黑";}
+	
+	.wrapper{ width:100%; }
+	.head-wrap{ width:100%; height:160px; background:url(images/edit_bg.png);}
+	.head-con{ width:1000px; margin:0 auto; height:160px; line-height:160px;}
+	.head-con h1{ font-size:32px; font-weight:bold; padding-left:80px;}
+	
+	.wrap-con{ width:1000px; margin:0 auto; }
+	.edit-con{ width:600px; margin:auto; background-color:#fff; border-top:1px solid #b7bbb; padding:0 30px;;}
+	.edit-nav{ height:60px; border-bottom:1px solid #ccc; }
+	.edit-nav span{ display:block; width:80px; height:60px; font-size:16px; color:#4d555d; line-height:60px; text-align:center; border-bottom:1px solid #f01400;}
+	.input-userinfo{ width:490px; margin:20px auto;}
+	.need-input{ margin-bottom:20px; overflow:hidden;}
+	.signature textarea{ width:410px; height:120px;}
+	.label-name{ float:left; width:70px; text-align:right; height:40px; line-height:40px; color:#07111b; font-weight:bold; font-size:14px;}
+	.inputCon{ float:left; margin-left:8px; width:405px; height:40px; color:#60686b; padding-left:5px; box-sizing: border-box;}
+	.chooseSex{ float:left; margin-left:8px; width:405px; height:40px; line-height:40px; color:#60686b; padding-left:5px; overflow:hidden;}
+	.chooseSex .sex{ display:inline-block; width:40px; margin-right:26px;}
+	.chooseSex input{ display:inline-block; margin-right:10px; vertical-align:middle;}
+	.inputArea{ float:left; margin-left:8px; width:405px; height:160px; color:#787d82; padding-left:5px; line-height:1.42857143;}
+	.save{ height:40px; padding-bottom:20px;}
+	.save input{ display:block; margin-left:80px; background-color:#00b33b; border:none; border-radius:2px; color:#fff; text-align:center; line-height:40px; cursor:pointer; width:96px; height:40px;}
+	.footer{ width:100%; margin-top:30px; height:200px; background-color:#D4D4D4;}
+	.footer-content{ width:1000px; margin:0 auto;}
+	.foot-title{ width:720px; height:40px; font-size:12px; text-align:center; padding-top:40px; margin:0px auto;}
+	.foot-title ul{ display:block; width:350px; margin:0 auto; height:20px; list-style:none; text-align:center;}
+	.foot-title ul li{ float:left; }
+	.foot-title p{ clear:both;}
+	.foot-value{ width:600px; height:50px; margin:40px auto;}
+	.foot-value ul{ list-style:none;}
+	.foot-value li{ display:block; float:left; margin-right:20px;}
+	.clear{ clear:both;}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+        $("#male").bind("click",function(){
+			console.log($(this).prop("checked"));
+			$("#female").prop("checked",false);
+		});
+		$("#female").bind("click",function(){
+			console.log($(this).prop("checked"));
+			$("#male").prop("checked",false);
+		});
+    });
+</script>
+</head>
+
+<body>
+<div class="header">
+    <div class="mid-box">
+        <div class="logo"></div>
+        <div class="index">
+        	<a href="#">首页</a>
+        </div>
+        <div class="bangIndex"><a href="#">帮帮招领</a></div>
+        <div class="customer register">
+            <a href="#">注册</a>
+        </div>
+        <div class="customer login">
+            <a href="#">登录</a>
+        </div>
+        <div class="search">
+            <form action="#" method="get" class="form">
+                <div class="btn"><input type="submit" value="搜 索" /></div>
+                <div class="txt"><input type="text" /></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+	<div class="head-wrap">
+        <div class="head-con">
+            <h1>个人设置</h1>
+        </div>
+    </div>
+	<div class="wrap-con"> 
+        <div class="edit-con">
+        	<div class="edit-nav">
+                <span>基本信息</span>
+            </div>
+            <div class="input-userinfo">
+            	<form action="#" method="post">
+                    <div class="need-input">
+                        <label class="label-name">昵称:</label>
+                        <input type="text" class="inputCon" />
+                    </div>
+                    <div class="need-input">
+                    	<label class="label-name">性别:</label>
+                        <div class="chooseSex">
+                            <label class="sex"><input type="radio" id="male" />男</label>
+                            <label class="sex"><input type="radio" id="female" />女</label>
+                        </div>
+                    </div>
+                    <div class="need-input">
+                        <label class="label-name">个性签名:</label>
+                        <textarea name="signature" class="inputArea"></textarea>
+                    </div>
+                    <div class="save">
+                        <input type="submit" value="保存" />
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="footer">
+    <div class="footer-content">
+        <div class="foot-title">
+            <ul>
+                <li>帮帮简介| </li>
+                <li>帮帮公告| </li>
+                <li>招贤纳士| </li>
+                <li>联系我们| </li>
+                <li>客服热线：400-675-1234</li>
+            </ul>
+            <p>Copyright @ 2006-2014 木刻版区所有 京ICP备09037834号 京ICP证B1034-8373号 某市公安局XX分局备案编号：123456789123</p>
+        </div>
+        <div class="foot-value">
+            <ul>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+                <li><img src="images/credit.jpg" /></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

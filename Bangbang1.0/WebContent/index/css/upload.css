@@ -1,0 +1,58 @@
+/* CSS Document */
+	 .upload{ display:none; height:470px; width:680px; position:fixed; top:50%; left:50%; margin-top:-235px; margin-left:-325px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.25); z-index:9999;}
+	 .uploadMainFrame{ position:relative; padding:2px 0 0 2px; zoom:1;}
+	 .frameShadow{ position:absolute; z-index:-1; left:0; top:0; width:100%; height:100%; background:#fff; border:1px solid #ccc;}
+	 
+	 .up-head{ height:26px; line-height:25px; font-weight:bold; font-size:13px;cursor:move; color:#474747; text-shadow:0 1px 0 rgba(255,255,255,.75);border-bottom:1px solid #999; background-color:#cfd1cf;}   
+	 .up-head .title{ float:left; font-size:12px; margin-left:10px; line-height:25px;}
+	 .up-head .shut{ float:right; height:23px; padding-top:2px; margin-right:5px; line-height:26px;}
+	 .shut:hover{ cursor:pointer;} 
+	 .up-head .shut img{ border-radius:50%;}
+	 .tabhead{ float:left; margin-top:10px; margin-left:14px; z-index:10; position:relative; overflow:hidden;}
+	 .tabhead span{ display:inline-block; padding:0 5px; height:30px; text-align:center; line-height:30px; border:1px solid #ccc;}
+	 .tabhead .local{  height:32px; border-bottom:none; background-color:#fff;}
+	 .up-content{ width:648px; height:348px; margin:0 auto; margin-top:42px; border:1px solid #ccc; }
+	 
+	 .up-content .statusBar{ height:45px; border-bottom:1px solid #dadada; margin:0 10px; line-height:45px; vertical-align:middle; position:relative;}
+	 .statusBar .process{ display:none; border:1px solid #1483d8; width:198px; background-color:#fff; height:18px; position:absolute; top:12px; text-align:center; line-height:18px; color:#6dbfff; margin:0 10px 0 0;}
+	 .process .text{ position:relative; z-index:10;}
+	 .process .percentage{ width:0px; height:100%; position:absolute; left:0; top:0; background:#1483d8;}
+	 .statusBar .btns{ position:relative; float:right; width:208px; height:32px; top:7px; right:0; line-height:30px;}
+	 .btns .addImg{ position:relative; display:inline-block; float:left; overflow:hidden;}
+	 .addImg .addImg-pick{ width:94px; height:30px; margin-right:10px; text-align:center; font-size:14px; background:#565656; border:1px solid #cfcfcf; background:#fff; border-radius:3px; cursor:pointer; overflow:hidden;}
+	 .addImg .addImg-upload{ position:absolute; top:0; left:0; width:94px; height:30px; cursor:pointer; overflow:hidden;}
+	 .addImg .addImg-upload label{ display:block; opacity:1; width:100%; height:100%; cursor:pointer;}
+	 .addImg .addImg-upload label input{ position:absolute !important; top:-10px; font-size:0;}
+	 .btns .startUpload{ float:left; width:94px; height:32px; text-align:center; background:#00b7ee; color:#fff; border-radius:3px; border-color:transparent; cursor:pointer;}
+	 .btns .disabled{ pointer-events:none; opacity:0.6;}
+	 .img-area{ position:relative; margin:10px; border:2px dashed #e6e6e6; height:326px; text-align:center; background:url(../images/upload_bg.png) center no-repeat; }
+	 .pick-upload{ width:168px; height:45px; margin:142px auto; font-size:18px; background-color:#00b7ee; border-radius:3px; line-height:45px; color:#fff; cursor:pointer;}
+	 .img-upload{ position:absolute; top:142px; left:230px; width:168px; height:45px; overflow:hidden;}
+	 .img-upload label{ display:block; opacity:0; width:100%; height:100%; cursor:pointer;}
+	 .img-upload label input{ position:absolute !important; font-size:0;}
+	 .filelist{ list-style:none; margin:0; padding:0; overflow-x:hidden; overflow-y:auto; position:relative; height: 300px;}
+	 .filelist li{ float:left; position:relative; text-align:center; height:113px; width:113px; margin:9px 0 0 9px; overflow:hidden;}
+	 .filelist li .imgWrap{ position:relative; width:113px; height:113px; overflow:hidden; vertical-align:middle; z-index:2; transition:200ms ease-out;}
+	 .imgWrap img{ width:113px; height:113px;}
+	 
+	 .uploadSuccess{ display:none; width:100%; height:28px; position:absolute; bottom:0; left:0; background:url(../images/success.png) right no-repeat; z-index:100;}
+	 .error{ display:none; width:100%; height:28px; color:#fff; background:#f43838; position:absolute; bottom:0; left:0; line-height:28px; z-index:100;}
+	 
+	 .filelist li .cancelUpload{ position:absolute; width:100%; height:0px; background:#eee; top:0; left:0; overflow:hidden; z-index:300;}
+	 .cancelUpload span{ display:inline; float:right; width:24px; height:24px; margin:5px 5px auto auto; cursor:pointer; background:url(../images/cancel.png) center no-repeat;}
+	 .filelist .continue{ border:1px solid #eeeeee; background:url(../images/continue_upload_bg.png) center no-repeat;}
+	 .continueUpload{ position:absolute; top:0; left:0; width:113px; height:113px; overflow:hidden;}
+	 .continueUpload label{ display:block; opacity:0; width:100%; height:100%; background:#fff; cursor:pointer;}
+	 
+	 .up-bottom{ height:30px; margin-top:10px; overflow:hidden; }
+	 .up-bottom div{ float:left; border:1px solid #cfcfcf; color:#565656; font-size:14px; padding:0px 18px; border-radius:3px; cursor:pointer;}
+	 .up-bottom .confirm{ margin-left:490px;}
+	 .up-bottom .cancel{ margin-left:20px;}
+	 
+	 .orderList{ width:560px; height:38px; line-height:38px; border-bottom:1px solid #cbcdd2; background:#eceef0;}
+	 .order01{ float:left; height:30px; width:30px; margin:4px 5px 4px 0; }
+	 .order01:hover{ background:#ccc;}
+	 .order01 .order01-img{ height:28px !important; width:28px !important; background:url(../images/upload.jpg) center no-repeat;}
+	 
+	 .addInputBox{ display:none; width:680px; z-index:999; border:1px solid #c8cd2; background-color:#fff; position:relative; overflow:visible; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px;}
+	 .add-input{ width:560px; position:relative; z-index:999; overflow:hidden;}

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/my_bangbang </value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>628628</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource"/>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/space/po/Account.hbm.xml</value>
+				<value>com/space/po/Answer.hbm.xml</value>
+				<value>com/space/po/User.hbm.xml</value>
+				<value>com/space/po/Message.hbm.xml</value>
+				<value>com/space/po/Critique.hbm.xml</value>
+				<value>com/space/po/CriClick.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 定义HibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="userDAO" class="com.space.dao.UserDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="userService" class="com.space.service.UserServiceImpl">
+		<property name="userDAO">
+			<ref bean="userDAO"/>
+		</property>
+	</bean>
+	<bean id="loginAction" class="com.space.action.LoginAction" scope="prototype">
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="registerAction" class="com.space.action.Register" scope="prototype">
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="checkAction" class="com.space.action.CheckAction" scope="prototype">
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="exitAction" class="com.space.action.ExitAction" scope="prototype">
+	</bean>
+	<bean id="messageDAO" class="com.space.dao.MessageDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="critiqueDAO" class="com.space.dao.CritiqueDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="messageService" class="com.space.service.MessageServiceImpl">
+		<property name="messageDAO">
+			<ref bean="messageDAO"/>
+		</property>
+		<property name="critiqueDAO">
+			<ref bean="critiqueDAO"/>
+		</property>
+	</bean>
+	<bean id="answerDAO" class="com.space.dao.AnswerDAOImpl">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	<bean id="answerService" class="com.space.service.AnswerServiceImpl">
+		<property name="answerDAO">
+			<ref bean="answerDAO"/>
+		</property>
+	</bean>
+	<bean id="showIndex" class="com.space.action.ShowIndex" scope="prototype">
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="showFound" class="com.space.action.ShowFound" scope="prototype">
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="askBang" class="com.space.action.AskBang" scope="prototype">
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="showUserInfo" class="com.space.action.ShowUserInfo" scope="prototype">
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="critiqueService" class="com.space.service.CritiqueServiceImpl">
+		<property name="critiqueDAO">
+			<ref bean="critiqueDAO"/>
+		</property>
+	</bean>
+	<bean id="showMessage" class="com.space.action.ShowMessage" scope="prototype">
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="critiqueService">
+			<ref bean="critiqueService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+		<property name="answerService">
+			<ref bean="answerService"/>
+		</property>
+	</bean>
+	<bean id="addCritique" class="com.space.action.AddCritique" scope="prototype">
+		<property name="critiqueService">
+			<ref bean="critiqueService"/>
+		</property>
+		<property name="messageService">
+			<ref bean="messageService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="addAnswer" class="com.space.action.AddAnswer" scope="prototype">
+		<property name="critiqueService">
+			<ref bean="critiqueService"/>
+		</property>
+		<property name="answerService">
+			<ref bean="answerService"/>
+		</property>
+	</bean>
+	<bean id="uploadImg" class="com.space.action.UpLoadImage" scope="prototype">
+	</bean>
+	<bean id="getAnswer" class="com.space.action.GetAnswerAction" scope="prototype">
+		<property name="answerService">
+			<ref bean="answerService"/>
+		</property>
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="editUserInfo" class="com.space.action.EditUserInfo" scope="prototype">
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="showEditUserInfo" class="com.space.action.ShowEditUserInfo" scope="prototype">
+		<property name="userService">
+			<ref bean="userService"/>
+		</property>
+	</bean>
+	<bean id="zanAndOppose" class="com.space.action.ZanAndOpposeAction" scope="prototype">
+		<property name="critiqueService">
+			<ref bean="critiqueService"/>
+		</property>
+	</bean>
+</beans>
+		

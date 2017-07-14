@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+	.after-customer{ float:right; height:60px; position:relative;}
+	.after-customer .newMes,.cus-img{ display:inline-block; width:60px; height:60px; line-height:60px; text-align:center; transition:background-color 0.5s; cursor:pointer;}
+	.after-customer .newMes{ color:#999;}
+	.after-customer .newMes:hover{ background-color:#f01400; color:#fff;}
+	.after-customer .cusImg{ width:50px; height:50px; border:2px solid #ccc; border-radius:50%; vertical-align:middle;}
+	.after-customer .cusImg:hover{ border-color:#f01400;}
+	
+	.personal{ display:none; position:absolute; width:240px; padding-top:5px; top:55px; right:0; z-index:100;}
+	.triangle{ width:240px; height:10px; background:url(../images/tri.png) 92% center no-repeat; overflow:hidden;}
+	.triangle img{ float:right; margin-right:18px;}
+	.per-head{ height:80px; background-color:#f01400; overflow:hidden;}
+	.per-img{ float:left; width:80px; text-align:center; margin-top:10px;}
+	.per-img img{ width:60px; height:60px; border-radius:50%;}
+	.per-info{ float:left; color:#fff; line-height:30px;}
+	.per-info h3{ font-size:16px; font-weight:600; padding-top:20px;}
+	.per-info p{ font-size:14px;}
+	.per-bottom{ height:40px; width:238px; background-color:#fff; border:1px solid #ccc; overflow:hidden;}
+	.per-bottom .setinfo{ float:left; width:80px; height:40px; line-height:40px; text-align:center; color:#787d82;}
+	.per-bottom .exit{ float:right; width:80px; height:40px; line-height:40px; text-align:center; color:#787d82;}
+	.per-bottom a:hover{ color:#f01400;}
